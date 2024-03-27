@@ -1,7 +1,15 @@
 [package]
-name = "prost-arrow-derive"
 authors = [ "Matt Forbes <matt.r.forbes@gmail.com>" ]
+description = """
+Provides the proc-macro for prost-arrow that can derive the ToArrow trait
+on prost-generated messages.
+"""
 edition = "2021"
+keywords = ["rpc", "grpc", "protobuf", "prost", "arrow"]
+license = "Apache-2.0"
+name = "prost-arrow-derive"
+readme = "README.md"
+repository = "https://github.com/emef/prost-arrow"
 version = "0.0.1"
 
 [lib]
