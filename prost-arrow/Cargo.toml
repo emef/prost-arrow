@@ -5,8 +5,7 @@ authors = [ "Matt Forbes <matt.r.forbes@gmail.com>" ]
 edition = "2021"
 
 [dependencies]
-prost-arrow-derive = { version="0.0.1", path = "../prost-arrow-derive" }
-prost-build = { workspace = true }
 arrow-array = { workspace = true }
 arrow-schema = { workspace = true }
 prost = { workspace = true }
+prost-arrow-derive = { version="0.0.1", path = "../prost-arrow-derive" }
