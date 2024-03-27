@@ -11,7 +11,7 @@ path = "src/routeguide/routeguide.rs"
 
 [dependencies]
 prost = { workspace = true }
-prost-arrow = { path = ".." }
+prost-arrow = { path = "../prost-arrow" }
 arrow-array = { workspace = true }
 arrow-buffer = { workspace = true }
 arrow-schema = { workspace = true }
