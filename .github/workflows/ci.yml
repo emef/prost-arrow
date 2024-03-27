@@ -6,10 +6,28 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  PROTOC_VERSION: 3.20.3
 
 jobs:
+  rustfmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - run: cargo fmt --all --check
+
+  machete:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: taiki-e/install-action@cargo-machete
+      - name: Check unused dependencies
+        run: cargo machete
+
   build_and_test:
-    name: Rust project - latest
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -19,6 +37,10 @@ jobs:
           - nightly
     steps:
       - uses: actions/checkout@v3
+      - name: install protoc
+        uses: taiki-e/install-action@v2
+        with:
+          tool: protoc@${{ env.PROTOC_VERSION }}
       - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
       - run: cargo build --all --verbose
       - run: cargo test -all --verbose

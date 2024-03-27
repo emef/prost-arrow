@@ -24,6 +24,5 @@ prost-build = { version = "0.12" }
 prost-arrow-derive = { path = "prost-arrow-derive" }
 prost-build = { workspace = true }
 arrow-array = { workspace = true }
-arrow-buffer = { workspace = true }
 arrow-schema = { workspace = true }
 prost = { workspace = true }
