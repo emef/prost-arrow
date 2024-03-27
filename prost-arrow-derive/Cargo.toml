@@ -8,7 +8,7 @@ edition = "2021"
 keywords = ["rpc", "grpc", "protobuf", "prost", "arrow"]
 license = "Apache-2.0"
 name = "prost-arrow-derive"
-readme = "README.md"
+readme = "../README.md"
 repository = "https://github.com/emef/prost-arrow"
 version = "0.0.1"
 

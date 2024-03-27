@@ -1,9 +1,10 @@
 [package]
+authors = [ "Matt Forbes <matt.r.forbes@gmail.com>" ]
+edition = "2021"
+license = "Apache-2.0"
 name = "examples"
 publish = false
 version = "0.0.1"
-authors = [ "Matt Forbes <matt.r.forbes@gmail.com>" ]
-edition = "2021"
 
 [[bin]]
 name = "routeguide"
