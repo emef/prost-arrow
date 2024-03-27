@@ -1,4 +1,6 @@
 ![ci](https://github.com/emef/prost-arrow/actions/workflows/ci.yml/badge.svg)
+[![Documentation](https://docs.rs/prost-arrow/badge.svg)](https://docs.rs/prost-arrow/)
+[![Crate](https://img.shields.io/crates/v/prost-arrow.svg)](https://crates.io/crates/prost-arrow)
 
 # PROST! Apache Arrow Support
 
