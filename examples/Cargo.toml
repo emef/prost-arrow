@@ -1,0 +1,20 @@
+[package]
+name = "examples"
+publish = false
+version = "0.0.1"
+authors = [ "Matt Forbes <matt.r.forbes@gmail.com>" ]
+edition = "2021"
+
+[[bin]]
+name = "routeguide"
+path = "src/routeguide/routeguide.rs"
+
+[dependencies]
+prost = { workspace = true }
+prost-arrow = { path = ".." }
+arrow-array = { workspace = true }
+arrow-buffer = { workspace = true }
+arrow-schema = { workspace = true }
+
+[build-dependencies]
+prost-build = { workspace = true }

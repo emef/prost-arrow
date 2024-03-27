@@ -1,0 +1,29 @@
+[package]
+name = "prost-arrow"
+version = "0.0.1"
+authors = [ "Matt Forbes <matt.r.forbes@gmail.com>" ]
+edition = "2021"
+
+[workspace]
+members = [
+    "examples",
+    "prost-arrow-derive",
+]
+
+[lib]
+
+
+[workspace.dependencies]
+arrow = { version = "50.0.0" }
+arrow-array = { version = "50.0.0" }
+arrow-buffer = { version = "50.0.0" }
+arrow-schema = { version = "50.0.0" }
+prost = { version = "0.12" }
+prost-build = { version = "0.12" }
+
+[dependencies]
+prost-arrow-derive = { path = "prost-arrow-derive" }
+arrow-array = { workspace = true }
+arrow-buffer = { workspace = true }
+arrow-schema = { workspace = true }
+prost = { workspace = true }
