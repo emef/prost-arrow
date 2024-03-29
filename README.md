@@ -47,6 +47,10 @@ Finally, to access the array builder for a generated prost type, we use
 `append_option` method that accepts our prost type `T`.
 
 ```rust
+// required trait imports
+use arrow_array::builder::ArrayBuilder;
+use prost_arrow::{ArrowBuilder, ToArrow};
+
 // Rectangle is a prost-generated struct that has ToArrow derived.
 let mut builder = prost_arrow::new_builder::<Rectangle>();
 
@@ -74,10 +78,6 @@ so the `finish` or `finish_cloned` methods can be used to finalize the arrow
 array (in our case, a struct array).
 
 ```rust
-// required trait imports
-use arrow_array::builder::ArrayBuilder;
-use prost_arrow::{ArrowBuilder, ToArrow};
-
 // finish the array builder to get an ArrayRef
 let arr = builder.finish();
 
