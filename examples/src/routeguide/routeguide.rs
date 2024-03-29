@@ -1,8 +1,7 @@
 use arrow_array::builder::ArrayBuilder;
-use prost_arrow::ArrowBuilder;
-use prost_arrow::ToArrow;
-use routeguide::Point;
-use routeguide::Rectangle;
+use arrow_array::{RecordBatch, StructArray};
+use prost_arrow::{ArrowBuilder, ToArrow};
+use routeguide::{Point, Rectangle};
 
 pub mod routeguide {
     include!(concat!(env!("OUT_DIR"), "/routeguide.rs"));
@@ -50,10 +49,13 @@ fn main() {
         repeated_binary: vec![vec![5, 50]],
     }));
 
-    builder.append(None);
-
     let arr = builder.finish();
+    let struct_arr = arr.as_any().downcast_ref::<StructArray>().unwrap();
 
     println!("Hello, world! {datatype:?}");
-    println!("rectangles: {:?}", arr);
+    println!("rectangles: {:?}", struct_arr);
+
+    let record_batch: RecordBatch = struct_arr.into();
+
+    println!("as record batch: {:?}", record_batch)
 }
