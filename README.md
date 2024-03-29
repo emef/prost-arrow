@@ -74,6 +74,9 @@ so the `finish` or `finish_cloned` methods can be used to finalize the arrow
 array (in our case, a struct array).
 
 ```rust
+// required trait imports
+use arrow_array::builder::ArrayBuilder;
+use prost_arrow::{ArrowBuilder, ToArrow};
 
 // finish the array builder to get an ArrayRef
 let arr = builder.finish();
