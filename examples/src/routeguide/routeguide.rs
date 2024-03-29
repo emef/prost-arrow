@@ -22,7 +22,7 @@ fn main() {
 
     let mut builder = prost_arrow::new_builder::<Rectangle>();
 
-    builder.append(Some(Rectangle {
+    builder.append_option(Some(Rectangle {
         lo: Some(pt_1),
         hi: None,
         messages: vec!["one".to_string(), "two".to_string()],
@@ -40,14 +40,14 @@ fn main() {
         repeated_binary: vec![vec![10, 100]],
     }));
 
-    builder.append(Some(Rectangle {
+    builder.append_value(Rectangle {
         lo: Some(pt_2),
         hi: None,
         messages: vec!["three".to_string()],
         extra_points: vec![],
         binary: vec![4, 5, 6, 7],
         repeated_binary: vec![vec![5, 50]],
-    }));
+    });
 
     let arr = builder.finish();
     let struct_arr = arr.as_any().downcast_ref::<StructArray>().unwrap();

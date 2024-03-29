@@ -37,7 +37,11 @@ impl ArrowBuilder<String> for ArrowStringBuilder {
         }
     }
 
-    fn append(&mut self, value: Option<String>) {
+    fn append_value(&mut self, value: String) {
+        self.builder.append_value(value)
+    }
+
+    fn append_option(&mut self, value: Option<String>) {
         self.builder.append_option(value)
     }
 }
@@ -79,7 +83,11 @@ impl ArrowBuilder<Vec<u8>> for ArrowBinaryBuilder {
         }
     }
 
-    fn append(&mut self, value: Option<Vec<u8>>) {
+    fn append_value(&mut self, value: Vec<u8>) {
+        self.builder.append_value(value)
+    }
+
+    fn append_option(&mut self, value: Option<Vec<u8>>) {
         self.builder.append_option(value)
     }
 }

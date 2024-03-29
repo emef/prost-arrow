@@ -43,8 +43,8 @@ tonic_build::configure()
 Finally, to access the array builder for a generated prost type, we use
 `prost_arrow::new_builder<T>` for some prost-generated type `T` that has the
 `ToArrow` type derived. The builder returned will implement the base
-`arrow_builder::Builder` trait, but will also have an `append` and
-`append_option` method that accepts our prost type `T`.
+`arrow_builder::Builder` trait, but will also have `append_value` and
+`append_option` methods that accepts our prost type `T`.
 
 ```rust
 // required trait imports
@@ -54,7 +54,7 @@ use prost_arrow::{ArrowBuilder, ToArrow};
 // Rectangle is a prost-generated struct that has ToArrow derived.
 let mut builder = prost_arrow::new_builder::<Rectangle>();
 
-builder.append(Some(Rectangle {
+builder.append_value(Rectangle {
     lo: Some(pt_1),
     hi: None,
     messages: vec!["one".to_string(), "two".to_string()],
@@ -70,7 +70,7 @@ builder.append(Some(Rectangle {
     ],
     binary: vec![0, 1, 2, 3],
     repeated_binary: vec![vec![10, 100]],
-}));
+});
 ```
 
 The builder can be used just like any other arrow builder implementation type,

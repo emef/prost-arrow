@@ -23,15 +23,17 @@ where
         }
     }
 
-    fn append(&mut self, value: Option<Vec<T>>) {
+    fn append_value(&mut self, value: Vec<T>) {
+        let values = self.builder.values();
+        for v in value {
+            values.append_value(v);
+        }
+        self.builder.append(true);
+    }
+
+    fn append_option(&mut self, value: Option<Vec<T>>) {
         match value {
-            Some(vs) => {
-                let values = self.builder.values();
-                for v in vs {
-                    values.append(Some(v));
-                }
-                self.builder.append(true);
-            }
+            Some(vs) => self.append_value(vs),
             None => self.builder.append(false),
         }
     }

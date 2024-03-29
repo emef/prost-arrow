@@ -10,5 +10,6 @@ pub trait ToArrow {
 
 pub trait ArrowBuilder<T> {
     fn new_with_capacity(capacity: usize) -> Self;
-    fn append(&mut self, value: Option<T>);
+    fn append_value(&mut self, value: T);
+    fn append_option(&mut self, value: Option<T>);
 }

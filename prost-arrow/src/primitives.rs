@@ -38,7 +38,11 @@ impl<T: ArrowPrimitiveType> ArrowBuilder<T::Native> for PrimitiveArrowBuilder<T>
         }
     }
 
-    fn append(&mut self, value: Option<T::Native>) {
+    fn append_value(&mut self, value: T::Native) {
+        self.builder.append_value(value)
+    }
+
+    fn append_option(&mut self, value: Option<T::Native>) {
         self.builder.append_option(value)
     }
 }

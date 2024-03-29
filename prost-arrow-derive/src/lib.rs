@@ -96,14 +96,14 @@ fn impl_my_trait(ast: DeriveInput) -> Result<TokenStream2> {
         let builder_append_exprs = prost_fields.iter().map(|field| {
             let field_name = &field.name;
 
-            let accessor = if field.nullable {
-                quote!(v.#field_name)
+            if field.nullable {
+                quote_spanned! {
+                    field.span=> self.#field_name.append_option(value.#field_name)
+                }
             } else {
-                quote!(Some(v.#field_name))
-            };
-
-            quote_spanned! {
-                field.span=> self.#field_name.append(#accessor)
+                quote_spanned! {
+                    field.span=> self.#field_name.append_value(value.#field_name)
+                }
             }
         });
 
@@ -111,7 +111,7 @@ fn impl_my_trait(ast: DeriveInput) -> Result<TokenStream2> {
             let field_name = &field.name;
 
             quote_spanned! {
-                field.span=> self.#field_name.append(None)
+                field.span=> self.#field_name.append_option(None)
             }
         });
 
@@ -164,11 +164,15 @@ fn impl_my_trait(ast: DeriveInput) -> Result<TokenStream2> {
                     }
                 }
 
-                fn append(&mut self, value: Option<#name>) {
+                fn append_value(&mut self, value: #name) {
+                    #(#builder_append_exprs ;)*
+                    self.null_buffer_builder.append(true);
+                }
+
+                fn append_option(&mut self, value: Option<#name>) {
                     match value {
                         Some(v) => {
-                            #(#builder_append_exprs ;)*
-                            self.null_buffer_builder.append(true);
+                            self.append_value(v);
                         },
                         None => {
                             #(#builder_append_none_exprs ;)*

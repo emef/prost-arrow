@@ -9,10 +9,10 @@ license = "Apache-2.0"
 name = "prost-arrow"
 readme = "../README.md"
 repository = "https://github.com/emef/prost-arrow"
-version = "0.0.2"
+version = "0.0.3"
 
 [dependencies]
 arrow-array = { workspace = true }
 arrow-schema = { workspace = true }
 prost = { workspace = true }
-prost-arrow-derive = { version="0.0.2", path = "../prost-arrow-derive" }
+prost-arrow-derive = { version="0.0.3", path = "../prost-arrow-derive" }
